@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import ErrorPage from "next/error";
 import Head from "next/head";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -93,4 +94,3 @@ export async function getServerSideProps(context) {
     },
   };
 }
-
