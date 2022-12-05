@@ -40,16 +40,9 @@ export default function Post({ post, preview }) {
           <>
             <article>
               <Head>
-                <title>
-                  {post.title}
-                </title>
                 <meta
-                  property="og:title"
-                  content={post.title}
-                />
-                <meta
-                  property="og:image"
-                  content={post.featuredImage?.node.sourceUrl}
+                  property="og:url"
+                  content={`/_next/image?url=${post.featuredImage?.node.sourceUrl}`}
                 />
               </Head>
               <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">{post.title}</h1>
