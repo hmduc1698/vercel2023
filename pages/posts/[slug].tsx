@@ -49,7 +49,9 @@ export default function Post({ post, preview, host }) {
               <Head>
                 <meta
                   property="og:url"
-                  content={`${host}/_next/image?url=${post.featuredImage?.node.sourceUrl}`}
+                  content={`${host}/_next/image?url=${encodeURIComponent(
+                    post.featuredImage?.node.sourceUrl
+                  )}&w=3840&q=100`}
                 />
               </Head>
               <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
