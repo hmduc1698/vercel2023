@@ -1,7 +1,7 @@
-import Avatar from './avatar'
-import Date from './date'
-import CoverImage from './cover-image'
-import Link from 'next/link'
+import Avatar from "./avatar";
+import Date from "./date";
+import CoverImage from "./cover-image";
+import Link from "next/link";
 
 export default function PostPreview({
   title,
@@ -10,16 +10,22 @@ export default function PostPreview({
   excerpt,
   author,
   slug,
+  databaseId,
 }) {
   return (
     <div>
       <div className="mb-5">
         {coverImage && (
-          <CoverImage title={title} coverImage={coverImage} slug={slug} />
+          <CoverImage
+            title={title}
+            coverImage={coverImage}
+            slug={slug}
+            databaseId={databaseId}
+          />
         )}
       </div>
       <h3 className="text-3xl mb-3 leading-snug">
-        <Link href={`/posts/${slug}`}>
+        <Link href={`/posts/${databaseId}`}>
           <a
             className="hover:underline"
             dangerouslySetInnerHTML={{ __html: title }}
@@ -35,5 +41,5 @@ export default function PostPreview({
       />
       <Avatar author={author} />
     </div>
-  )
+  );
 }

@@ -1,6 +1,7 @@
-import PostPreview from './post-preview'
+import PostPreview from "./post-preview";
 
 export default function MoreStories({ posts }) {
+  console.log("post==", posts);
   return (
     <section>
       <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-16 lg:gap-x-32 gap-y-20 md:gap-y-32 mb-32">
@@ -13,9 +14,10 @@ export default function MoreStories({ posts }) {
             author={node.author}
             slug={node.slug}
             excerpt={node.excerpt}
+            databaseId={node.databaseId}
           />
         ))}
       </div>
     </section>
-  )
+  );
 }
