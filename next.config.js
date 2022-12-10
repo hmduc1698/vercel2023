@@ -7,16 +7,13 @@ if (!process.env.NEXT_PUBLIC_WORDPRESS_API_URL) {
 
 /** @type {import('next').NextConfig} */
 module.exports = {
-  trailingSlash: true,
   images: {
     domains: [
-      process.env.NEXT_PUBLIC_WORDPRESS_API_URL.match(
-        /(?!(w+)\.)\w*(?:\w+\.)+\w+/
-      )[0], // Valid WP Image domain.
-      "0.gravatar.com",
-      "1.gravatar.com",
-      "2.gravatar.com",
-      "secure.gravatar.com",
+      process.env.NEXT_PUBLIC_WORDPRESS_API_URL.match(/(?!(w+)\.)\w*(?:\w+\.)+\w+/)[0], // Valid WP Image domain.
+      '0.gravatar.com',
+      '1.gravatar.com',
+      '2.gravatar.com',
+      'secure.gravatar.com',
     ],
   },
-};
+}

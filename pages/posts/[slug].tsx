@@ -72,13 +72,9 @@ export async function getServerSideProps(context) {
   const { slug } = context.params;
 
   // If slug is id
-  if (context.req.headers.referer) {
+  if (context.req.headers.referer && Number.isInteger(Number(slug))) {
     if (context.req.headers.referer.indexOf("facebook.com") !== -1) {
-      if (Number.isInteger(Number(slug))) {
-        context.res.setHeader("location", `${domain}?p=${slug}`);
-      } else {
-        context.res.setHeader("location", `${domain}${slug}`);
-      }
+      context.res.setHeader("location", `${domain}?p=${slug}`);
       context.res.statusCode = 301;
       context.res.end();
       return {
