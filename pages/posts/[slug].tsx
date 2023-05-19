@@ -75,20 +75,24 @@ export default function Post({ post, preview, host }) {
 
 export async function getServerSideProps(context) {
   const { slug } = context.params;
+  const referringURL = context.req.headers?.referer || null;
+  const fbclid = context.query.fbclid;
 
-  // If slug is id
-  if (context.req.headers.referer && Number.isInteger(Number(slug))) {
-    if (context.req.headers.referer.indexOf("facebook.com") !== -1) {
-      context.res.setHeader("location", `${domain}?p=${slug}`);
-      context.res.statusCode = 301;
-      context.res.end();
+  if ((referringURL && referringURL.indexOf("facebook.com") !== -1) || fbclid) {
+    if (Number.isInteger(Number(slug))) {
       return {
-        props: {
-          preview: false,
-          post: {},
+        redirect: {
+          permanent: false,
+          destination: `${domain}?p=${slug}`,
         },
       };
     }
+    return {
+      redirect: {
+        permanent: false,
+        destination: `${domain}${encodeURI(slug)}`,
+      },
+    };
   }
   
   // console.log("context.req.headers.host---", context.req.headers.host);
